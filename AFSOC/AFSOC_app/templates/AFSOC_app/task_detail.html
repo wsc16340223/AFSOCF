@@ -1,0 +1,56 @@
+{% extends 'AFSOC_app/base.html' %}
+{% load static %}
+{% load django_tables2 %}
+{% block title %}AFSOC-任务信息{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <div class="col-md-4 col-md-offset-4 myBorder">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="text-center">任务信息</h2>
+                <div class="form-group">
+                    {{ taskInfo_form.title.label_tag }}
+                    {{ taskInfo_form.title }}
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.state.label_tag }}
+                    {{ taskInfo_form.state}}
+
+                    <button type="submit" class="btn btn-primary" name="jumpTo">状态跳转</button>
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.description.label_tag }}
+                    {{ taskInfo_form.description }}
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.priority.label_tag }}
+                    {{ taskInfo_form.priority }}
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.assignee.label_tag }}
+                    {{ taskInfo_form.assignee }}
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.supervisor.label_tag }}
+                    {{ taskInfo_form.supervisor }}
+                </div>
+                <div class="form-group">
+                    {{ taskInfo_form.includeFile.label_tag }}
+                    {{ taskInfo_form.includeFile }}
+                    <button type="submit" class="btn btn-default" name="download">下载文件</button>
+                </div>
+                {% if request.session.permission != 'developer' %}
+                <button type="submit" class="btn btn-danger pull-left" name="delete">删除</button>
+                <button type="submit" class="btn btn-primary pull-right" name="change">修改</button>
+                {% endif %}
+            </form>
+    </div> <!-- /container -->
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'AFSOC_app/base.html' %}
+{% load static %}
+{% load django_tables2 %}
+{% block title %}AFSOC-个人信息{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <div class="col-md-4 col-md-offset-4 myBorder">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="text-center">用户信息</h2>
+                <div class="form-group">
+                    {{ developerInfo_form.username.label_tag }}
+                    {{ developerInfo_form.username }}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.password.label_tag }}
+                    {{ developerInfo_form.password }}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.email.label_tag }}
+                    {{ developerInfo_form.email }}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.permission.label_tag }}
+                    {{ developerInfo_form.permission }}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.department.label_tag }}
+                    {{ developerInfo_form.department}}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.task_assigned.label_tag }}
+                    {{ developerInfo_form.task_assigned}}
+                </div>
+                <div class="form-group">
+                    {{ developerInfo_form.task_solved.label_tag }}
+                    {{ developerInfo_form.task_solved}}
+                </div>
+                <button type="submit" class="btn btn-danger pull-left" name="delete">删除</button>
+                <button type="submit" class="btn btn-primary pull-right" name="change">修改</button>
+            </form>
+    </div> <!-- /container -->
+{% endblock %}

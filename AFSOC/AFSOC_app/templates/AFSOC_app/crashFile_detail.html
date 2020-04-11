@@ -1,0 +1,15 @@
+{% extends 'AFSOC_app/base.html' %}
+{% load static %}
+{% load django_tables2 %}
+{% block title %}AFSOC-文件信息{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4 myBorder">
+            <p>{{ crashFile }}</p>
+    </div> <!-- /container -->
+{% endblock %}

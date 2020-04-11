@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %}base{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/AFSOC_app/index/">AFSOC</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="nav navbar-nav">
+              {% if request.session.is_login %}
+                {% if request.session.permission == 'administrator' %}
+                    <li><a href="/AFSOC_app/reportHandle/">报告处理</a></li>
+                    <li><a href="/AFSOC_app/userManagement/">用户管理</a></li>
+                    <li><a href="/AFSOC_app/taskCenter_admin/">任务中心</a></li>
+                {% else %}
+                    <li><a href="/AFSOC_app/taskCenter/">任务中心</a></li>
+                {% endif %}
+                  <li><a href="/AFSOC_app/userCenter/">个人中心</a></li>
+              {% endif %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.session.is_login %}
+                <li><a href="/AFSOC_app/logout/">登出</a></li>
+            {% else %}
+                <li><a href="/AFSOC_app/login/">登录</a></li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+
+    </nav>
+
+    {% block content %}{% endblock %}
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

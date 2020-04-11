@@ -1,0 +1,47 @@
+{% extends 'AFSOC_app/base.html' %}
+{% load static %}
+{% block title %}AFSOC-新建任务{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <div class="col-md-4 col-md-offset-4 myBorder">
+            <form action="AFSOC_app/createTask/" method="post">
+              {% csrf_token %}
+              <h2 class="text-center">新建任务</h2>
+              <div class="form-group">
+                  {{ createTask_form.title.label_tag }}
+                  {{ createTask_form.title}}
+              </div>
+              <div class="form-group">
+                  {{ createTask_form.state.label_tag }}
+                  {{ createTask_form.state }}
+              </div>
+              <div class="form-group">
+                  {{ createTask_form.description.label_tag }}
+                  {{ createTask_form.description }}
+              </div>
+              <div class="form-group">
+                  {{ createTask_form.priority.label_tag }}
+                  {{ createTask_form.priority }}
+              </div>
+              <div class="form-group">
+                  {{ createTask_form.includeFileId.label_tag }}
+                  {{ createTask_form.includeFileId }}
+              </div>
+              <div class="form-group">
+                  {{ createTask_form.assignee.label_tag }}
+                  {{ createTask_form.assignee }}
+              </div>
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+          </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

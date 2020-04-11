@@ -1,0 +1,29 @@
+{% extends 'AFSOC_app/base.html' %}
+{% load render_table from django_tables2 %}
+{% block title %}AFSOC-任务中心{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if request.session.permission != 'developer' %}
+            <div>
+                <button class="btn btn-default pull-left"><a href="/AFSOC_app/createTask/" target="_blank">新建任务</a></button>
+            </div>
+        {% else %}
+            <div>
+                <h3>分配任务数：{{ task_assigned }}</h3>
+                <h3>完成任务数：{{ task_solved }}</h3>
+            </div>
+        {% endif %}
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary pull-right" name="show">显示已完成任务</button>
+                <button type="submit" class="btn btn-primary pull-right" name="hide">隐藏已完成任务</button>
+            </form>
+        </div>
+         <div>
+            {% render_table table %}
+        </div>
+    </div> <!-- /container -->
+{% endblock %}
