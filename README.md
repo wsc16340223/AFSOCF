@@ -51,7 +51,9 @@
 
 1. 使用codes文件夹下的GenerateDumpFile.cpp文件生成一个模拟用的dmp文件，GenerateTxtFiles项目会生成模拟用的txt文件，设定生成数量为一千个，要求使用Qt，同时由于随机数的关系，设定了每秒只生成一个文件，因此全部生成完毕需要十来分钟。zipFiles.py文件会将这些生成的txt文件和dmp文件打包成同名的压缩包，放入receiveFiles文件夹。
 2. 使用PyCharm打开AFSOC项目，需要MySQL，各种第三方库如下图所示：
+
    ![](./images/Thirdparty.png)
+
 3. 查看项目中的settings.py文件中需要确认自己数据库的账号密码，并保证有该数据库。
 4. 在PyCharm的命令行中，输入下述命令将项目的模型移植到数据库中：
     ```
